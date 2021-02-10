@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="marker">カテゴリー選択</h2>
+      <div class="public-products">
+          <% @categories.each do |category| %>
+        <div class="public-products1">
+              <%= link_to time_category_path(category) do %>
+                  <%= category.name %>
+              <% end %>
+              <%= link_to edit_category_path(category), data: {"turbolinks" => false} do %>
+                  編集
+              <% end %>
+        </div>
+          <% end %>
+      </div>
+
+      <h2 class="marker"> カテゴリー追加</h2>
+      <%= form_with model: @category, url: categories_path, method: :post, local: true do |category| %>
+        <table class="category">
+          <tbody>
+              <tr>
+                <td><%= category.label :"カテゴリー名" %></td>
+                <td><%= category.text_field :name ,placeholder:"カテゴリー名" %></td>
+              </tr>
+              <tr>
+                <td><%= category.label :"カテゴリーの色" %></td>
+                <td><%= category.select :color, [ '1', '2', '3', '4', '5', '6', '7', '8'], class: 'color' %></td>
+              </tr>
+          </tbody>
+        </table>
+        <%= category.submit "カテゴリー追加",class: "btn btn-success btn-lg" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

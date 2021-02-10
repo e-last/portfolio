@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col--12">
+      <h2 class="marker">マイページ</h2>
+      <p>
+        <strong>登録情報</strong>
+        <%= link_to "編集する", edit_user_path, class:"btn btn-success btn-customer_edit" %>
+      </p>
+
+      <table class='table' border="2">
+          <tr>
+            <td>名前</td>
+            <td class="user"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>アイコン画像</td>
+            <td class="user"><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+          </tr>
+            <td>メールアドレス</td>
+            <td class="user"><%= @user.email %></td>
+          </tr>
+      </table>
+      
+    </div>
+  </div>
+</div>

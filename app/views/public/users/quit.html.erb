@@ -1,0 +1,15 @@
+<div class="quit">
+ <strong>本当に退会しますか？</strong>
+
+ <div class="quit1">
+ 退会すると、会員登録情報や<br>
+ これまでの購入履歴が閲覧できなくなります。<br>
+ 退会する場合は、「退会する」をクリックしてください。
+ </div>
+
+<div class="quit2">
+ <%= link_to "退会しない", user_path, class:"btn  btn-primary btn-lg" %>
+ <%= link_to "退会する", user_goodbye_path, method: :patch, class:"btn  btn-danger btn-lg" %></p>
+</div>
+
+</div>

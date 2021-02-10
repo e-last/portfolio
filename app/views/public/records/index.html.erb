@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="marker">学習記録一覧</h2>
+      <table class="table" style= "width: 900px;margin: 0 auto;">
+
+        <thead style="background: lightgray;">
+          <tr>
+            <th>カテゴリー</th>
+            <th>カテゴリーの色</th>
+            <th>学習時間</th>
+            <th>学習開始時間</th>
+            <th>学習終了時間</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @records.each do |record| %>
+          <tr>
+            <td><%= record.name %></td>
+            <td><%= record.color %></td>
+            <td>
+              <% if !(record.end.nil?) %>
+                <%= studyHours( record.end, record ) %>
+              <% end %>
+            </td>
+            <td><%=l record.start %></td>
+            <td>
+              <% if !(record.end.nil?) %>
+                <%=l record.end %>
+              <% end %>
+            </td>
+            <td><%= link_to "詳細",record_path(record), class:"btn btn-success btn-customer_edit" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

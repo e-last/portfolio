@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="marker">詳細</h2>
+      
+      <% if @record.end.nil? %>
+        <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？" %>
+      <% end %>
+      
+      <table class='record' style= "width: 400px;">
+          <tr>
+            <td>カテゴリー</td>
+            <td><%= @record.name %></td>
+          </tr>
+          <tr>
+            <td>開始時刻</td>
+            <td><%=l @record.start %></td>
+          </tr>
+          <tr>
+            <td>終了時刻</td>
+            <td><%#= @record.end %></td>
+          </tr>
+          <tr>
+            <td>学習時間</td>
+            <td>
+              <% if @record.end.nil? %>
+                計測中です
+              <% else %>
+                <%= @record.end - @record.start %>
+              <% end %>
+              </td>
+          </tr>
+      </table>
+
+      <%= link_to "変更",edit_record_path(@record), class:"btn btn-success btn-customer_edit" %>
+
+    </div>
+  </div>
+</div>

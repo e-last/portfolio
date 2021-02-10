@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="marker">カテゴリー編集</h2>
+        <table class="customer-edit">
+          <%= form_with model: @category, url: category_path(@category), local:true, method: :patch do |category| %>
+            <tbody>
+              <tr>
+                  <td><%= category.label :"カテゴリー" %></td>
+                  <td><%= category.text_field :name  , class:"form-control name" %></td>
+              </tr>
+              <tr>
+                  <td><%= category.label :"色" %></td>
+                  <td><%= category.select :color, [ '1', '2', '3', '4', '5', '6', '7', '8'], class: 'color' %></td>
+              </tr>
+              <tr>
+                  <td><%= category.submit '編集内容を保存', class:"btn btn-success btn-customer_edit" %></td>
+                  <td> </td>
+              </tr>
+
+
+            </tbody>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
