@@ -1,24 +1,33 @@
-# README
+# 学習時間サイトRIVALS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+毎日の学習時間を記録する、他人と比較するサイト
+グラフ等を用いて、自分の記録一覧を確認したり、前日の自分とRIVALの学習時間の大小を自動的に表示するようにしたい。
 
-Things you may want to cover:
+### サイトテーマ
+毎日過去の記録を見返したり、毎朝前日のRIVALとの勝敗を確認したくなるようなサイトにしたい。
+毎日アクセスしたくなるように、見やすいデザインや、シームレスな画面遷移を意識したい。
 
-* Ruby version
+### テーマを選んだ理由
+過去の自分や他人と学習時間を比べることで、毎日の学習のモチベーションを上げたいと思ったから
 
-* System dependencies
+### ターゲットユーザ
+毎日の学習時間を記録したい、他人と比較したい人（主に学生）
 
-* Configuration
+### 主な利用シーン
+* 学習前後に記録をつけるとき
+* 過去の自分の記録を見て楽しみたいとき
+* 他人の記録を確認したいとき
 
-* Database creation
+## 設計書
+機能一覧
 
-* Database initialization
+## 機能一覧
+https://docs.google.com/spreadsheets/d/1im211VYHNASKVJXV1abX0svISCSKCRw6FFYOEFVFX8w/edit#gid=0
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：MacOS
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
