@@ -15,8 +15,10 @@
               </tr>
               <tr>
                   <td><%= category.submit '編集内容を保存', class:"btn btn-success btn-customer_edit" %></td>
-                  <td> </td>
+                  <td><%= link_to "削除", category_path(@category), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %></td>
               </tr>
+              
+              
 
 
             </tbody>

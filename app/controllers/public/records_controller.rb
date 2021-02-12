@@ -37,7 +37,7 @@ class Public::RecordsController < ApplicationController
   def destroy
     record = Record.find(params[:id])
     record.destroy
-    redirect_to record_path(@record)
+    redirect_to records_path
   end
 
   private

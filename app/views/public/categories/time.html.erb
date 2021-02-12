@@ -1,3 +1,3 @@
-<h2><%=l DateTime.current %></h2>
+<h2>現在時刻   <%=l DateTime.current %></h2>
 <p><%= @category.name  %></p>
 <%= link_to "学習開始",  category_records_path(@category), method: :post, "data-confirm" => "学習を開始しますか？" %>

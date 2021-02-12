@@ -10,15 +10,9 @@
         <ul class="navbar-nav ml-auto">
 
         <% if admin_signed_in? %>
-          <li><%= link_to ' products',admin_products_path,class: 'fas fa-gift nav-link text-light' %></li>
-          <li><%= link_to ' customers',admin_customers_path,class: 'fas fa-user-alt nav-link text-light' %></li>
-          <li><%= link_to ' orders',admin_orders_path,class: 'fas fa-people-carry nav-link text-light' %></li>
-          <li><%= link_to ' genres',admin_genres_path,class: 'fas fa-gifts nav-link text-light' %></li>
+          <li><%= link_to ' users',admin_users_path,class: 'fas fa-gift nav-link text-light' %></li>
+          <li><%= link_to ' records',admin_records_path,class: 'fas fa-user-alt nav-link text-light' %></li>
           <li><%= link_to ' logout', destroy_admin_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
-          <%= form_with(scope: :search, url: products_path, method: :get, local: true) do |f| %>
-            <%= f.text_field :name %>
-            <%= f.submit('検索') %>
-          <% end %>
         <% elsif user_signed_in? %>
           <ui class="header-name">
             ようこそ、<%= current_user.name %>さん！
@@ -36,4 +30,3 @@
     </div>
   </nav>
 </header>
-<%#= link_to "adminログイン", admin_session_path %>
