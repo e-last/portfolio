@@ -20,6 +20,7 @@
           <li><%= link_to ' mypage', user_path,class: 'fas fa-home nav-link text-light' %></li>
           <li><%= link_to ' category', categories_path,class: 'fas fa-gift nav-link text-light' %></li>
           <li><%= link_to ' record', records_path ,class: 'fas fa-shopping-cart nav-link text-light'%></li>
+          <li><%= link_to ' following', followings_user_path ,class: 'fas fa-shopping-cart nav-link text-light'%></li>
           <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
         <% else %>
           <li><%= link_to ' sign up', new_user_registration_path,class: 'fas fa-user-plus nav-link text-light' %></li>

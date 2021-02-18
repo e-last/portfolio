@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'search/search'
+  end
   devise_for :admins, skip: :all
 
   devise_scope :admin do
@@ -24,7 +27,14 @@ Rails.application.routes.draw do
 
     get 'user/quit' => 'users#quit'
     patch 'user/goodbye' => 'users#goodbye'
-    resource :user, only: [:show, :edit, :update]
+    resource :user, only: [:show, :edit, :update] 
+    
+    resources :users only: [:] do
+      resources :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    
 
     resources :categories, only: [:index, :create, :edit, :update, :destroy] do
       member do
@@ -37,8 +47,10 @@ Rails.application.routes.draw do
       member do
         patch 'finish' => 'records#finish'
       end
-
+      resources :post_comments, only: [:create, :destroy]
     end
+    
+    get '/search' => 'search#search'
 
     end
 

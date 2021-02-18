@@ -11,6 +11,7 @@
             <th>学習時間</th>
             <th>学習開始時間</th>
             <th>学習終了時間</th>
+            <th>コメント数</th>
             <th></th>
           </tr>
         </thead>
@@ -30,7 +31,8 @@
                 <%=l record.end %>
               <% end %>
             </td>
-            <td><%= link_to "編集",record_path(record), class:"btn btn-success btn-customer_edit" %></td>
+            <td><p><%= "#{record.post_comments.count} コメント" %></p></td>
+            <td><%= link_to "詳細",record_path(record), class:"btn btn-success btn-customer_edit" %></td>
           </tr>
         <% end %>
         </tbody>
