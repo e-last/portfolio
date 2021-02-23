@@ -2,14 +2,18 @@
   <div class="row">
     <div class="col-md-12">
       <h2 class="marker">学習記録一覧</h2>
+      
+      <%= link_to "記録の追加", new_record_path, class:"btn btn-success btn-customer_edit" %>
+      
+      <!--<p>昨日の学習時間は<%#= yesterdayHours(current_user)%>です</p>-->
+      
       <table class="table" style= "width: 900px;margin: 0 auto;">
 
         <thead style="background: lightgray;">
           <tr>
-            <th>カテゴリー</th>
-            <th>カテゴリーの色</th>
-            <th>学習時間</th>
-            <th>学習開始時間</th>
+            <th><%= sort_order "name", "カテゴリー名" %></th>
+            <th><%= sort_order "hour", "学習時間" %></th>
+            <th><%= sort_order "start", "学習開始時間" %></th>
             <th>学習終了時間</th>
             <th>コメント数</th>
             <th></th>
@@ -18,11 +22,10 @@
         <tbody>
         <% @records.each do |record| %>
           <tr>
-            <td><%= record.name %></td>
-            <td><%= record.color %></td>
+            <td class="color_<%= record.color %>"><%= record.name %></td>
             <td>
               <% if !(record.end.nil?) %>
-                <%= studyHours( record.end, record.start ) %>
+                <%= minute(record.hour) %>
               <% end %>
             </td>
             <td><%=l record.start %></td>
@@ -37,6 +40,7 @@
         <% end %>
         </tbody>
       </table>
+      <%#= paginate @records %>
     </div>
   </div>
 </div>

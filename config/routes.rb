@@ -25,16 +25,14 @@ Rails.application.routes.draw do
 
     root 'homes#top'
 
-    get 'user/quit' => 'users#quit'
-    patch 'user/goodbye' => 'users#goodbye'
-    resource :user, only: [:show, :edit, :update] 
-    
-    resources :users only: [:] do
-      resources :relationships, only: [:create, :destroy]
+    get 'users/quit' => 'users#quit'
+    patch 'users/goodbye' => 'users#goodbye'
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+
 
     resources :categories, only: [:index, :create, :edit, :update, :destroy] do
       member do
@@ -43,13 +41,14 @@ Rails.application.routes.draw do
       resources :records, only: [:create]
     end
 
-    resources :records, only: [:index, :show, :edit, :update, :destroy] do
+    post 'record/add' => 'records#add'
+    resources :records, only: [:new, :index, :show, :edit, :update, :destroy] do
       member do
         patch 'finish' => 'records#finish'
       end
       resources :post_comments, only: [:create, :destroy]
     end
-    
+
     get '/search' => 'search#search'
 
     end

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     if user_signed_in?
-      user_path
+      user_path(current_user)
     else
       admin_users_path
     end

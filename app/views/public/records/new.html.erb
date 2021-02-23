@@ -1,13 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="marker">詳細</h2>
+      <h2 class="marker">記録の追加</h2>
 
-      <% if @record.end.nil? %>
-        <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？" %>
-      <% end %>
-
-      <%= form_with model: @record, local:true do |record| %>
+      <%= form_with model: @record, url: record_add_path,method: :post, local:true do |record| %>
 
         <table class='record' style= "width: 400px;">
             <tr>
@@ -24,24 +20,12 @@
             </tr>
             <tr>
               <td>終了時刻</td>
-              <td>
-                <% if !@record.end.nil? %>
-                  <%=record.datetime_select :end, class:"form-control start" %>
-                <% end %>
-              </td>
+              <td><%=record.datetime_select :end, class:"form-control start" %></td>
             </tr>
         </table>
 
-        <% if !@record.end.nil? %>
-          <%= record.submit "変更を確定" , class:"btn btn-success btn-customer_edit" %>
-        <% end %>
-
+      　<%= record.submit "記録を追加する" , class:"btn btn-success btn-customer_edit" %>
       <% end %>
-
-
-      <%= link_to "削除",record_path(@record),method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %>
-
-
     </div>
   </div>
 </div>

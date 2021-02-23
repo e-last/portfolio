@@ -2,3 +2,9 @@
         <%= f.text_field 'search[value]' %>
               <%= f.submit :"検索" %>
       <% end %>
+      
+<% if @users.exists? %>
+  <%= render 'public/relationships/followings', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

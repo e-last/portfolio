@@ -3,16 +3,25 @@
     <div class="col-md-12">
       <h2 class="marker">カテゴリー選択</h2>
       <div class="public-products">
+
+        <table class="table" style= "width: 900px;margin: 0 auto;">
           <% @categories.each do |category| %>
-        <div class="public-products1">
+          <tr>
+            <td class="color_<%= category.color %>">
               <%= link_to time_category_path(category) do %>
                   <%= category.name %>
               <% end %>
+            </td>
+            <td>
               <%= link_to edit_category_path(category), data: {"turbolinks" => false} do %>
                   編集
               <% end %>
-        </div>
+            </td>
+          </tr>
           <% end %>
+        </table>
+
+        </div>
       </div>
 
       <h2 class="marker"> カテゴリー追加</h2>
@@ -25,7 +34,7 @@
               </tr>
               <tr>
                 <td><%= category.label :"カテゴリーの色" %></td>
-                <td><%= category.select :color, [ '1', '2', '3', '4', '5', '6', '7', '8'], class: 'color' %></td>
+                <td><%= category.select :color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]], class: 'color' %></td>
               </tr>
           </tbody>
         </table>

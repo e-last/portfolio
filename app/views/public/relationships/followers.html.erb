@@ -1,0 +1,11 @@
+      <%= form_with url:search_path, method: :get, local: true do |f| %>
+        <%= f.text_field 'search[value]' %>
+              <%= f.submit :"検索" %>
+      <% end %>
+      
+      <h2>Followed Users</h2>
+<% if @users.exists? %>
+  <%= render 'public/relationships/followings', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

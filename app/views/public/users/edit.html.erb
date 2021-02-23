@@ -15,7 +15,7 @@
                   <td><%= user.label :"アイコン画像" %></td>
                   <td><%= user.attachment_field :image, class:"form-control image" %></td>
                   <td><%= user.submit '編集内容を保存', class:"btn btn-success btn-user_edit" %></td>
-                  <td><%= link_to "退会する", user_quit_path, class:"btn btn-danger btn-user_quit" %></td>
+                  <td><%= link_to "退会する", users_quit_path, class:"btn btn-danger btn-user_quit" %></td>
               </tr>
 
 

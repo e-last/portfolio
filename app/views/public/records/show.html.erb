@@ -10,7 +10,7 @@
       <table class='record' style= "width: 400px;">
           <tr>
             <td>カテゴリー</td>
-            <td><%= @record.name %></td>
+            <td class="color_<%= @record.color %>"><%= @record.name %></td>
           </tr>
           <tr>
             <td>開始時刻</td>
@@ -30,7 +30,7 @@
               <% if @record.end.nil? %>
                 計測中です
               <% else %>
-                <%= studyHours( @record.end, @record.start ) %>
+                <%= minute(@record.hour) %>
               <% end %>
               </td>
           </tr>
@@ -40,26 +40,18 @@
         <%= link_to "変更",edit_record_path(@record), class:"btn btn-success btn-customer_edit" %>
       <% end %>
 
-      <%= link_to "削除",record_path(@record),method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %>
+      <%= link_to "削除",record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %>
 
       <div class="comments">
-        <p>コメント件数：<%= @record.post_comments.count %></p>
-        <% @record.post_comments.each do |post_comment| %>
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-            <% if post_comment.user == current_user %>
-            <div class="comment-delete">
-              <%= link_to "削除", record_post_comment_path(post_comment.record, post_comment), method: :delete %>
-            </div>
-            <% end %>
-        <% end %>
-        </div>
-        <div class="new-comment">
-        <%= form_with(model:[@record, @post_comment], local: true) do |f| %>
+        <%= render 'public/records/comments-index', record: @record %>
+      </div>
+
+      <div class="new-comment">
+        <%= form_with(model:[@record, @post_comment]) do |f| %>
           <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
-        </div>
+      </div>
 
     </div>
   </div>
