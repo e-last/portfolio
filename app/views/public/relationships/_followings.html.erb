@@ -4,6 +4,7 @@
     <tr>
       <th>名前</th>
       <th>昨日の学習時間</th>
+      <th>昨日の勝敗</th>
       <th>フォロー</th>
     </tr>
   </thead>
@@ -11,11 +12,20 @@
   <% users.each do |user| %>
     <tr>
       <td><%= user.name %></td>
-      <td><%=l DateTime.yesterday %></td>
+      <td><%= yesterdayHours(user)%></td>
+      <td>
+        <%if yesterdayHours(user) > yesterdayHours(current_user) %>
+          you lose
+        <% elsif yesterdayHours(user) == yesterdayHours(current_user) %>
+          even
+        <% else %>
+          you win
+        <% end %>
+      </td>
       <td>
           <% if current_user != user %>
             <% if current_user.following?(user) %>
-              <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+              <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-danger" %>
             <% else %>
               <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
             <% end %>
