@@ -1,5 +1,4 @@
-<h2>フォローしているユーザー一覧</h2>
-<table class="table" style= "width: 900px;margin: 0 auto;">
+<table class="table" border="2" style= "width: 900px;margin: 0 auto;">
   <thead style="background: lightgray;">
     <tr>
       <th>名前</th>
@@ -8,18 +7,18 @@
       <th>フォロー</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style= "background-color: rgb(255, 255, 255);">
   <% users.each do |user| %>
     <tr>
-      <td><%= user.name %></td>
+      <td><%= attachment_image_tag user, :image, :fill, 30, 30, format: 'jpeg', fallback: "no_image.jpg" %><%= user.name %></td>
       <td><%= yesterdayHours(user)%></td>
       <td>
         <%if yesterdayHours(user) > yesterdayHours(current_user) %>
-          you lose
+          <strong>you lose</strong>
         <% elsif yesterdayHours(user) == yesterdayHours(current_user) %>
           even
         <% else %>
-          you win
+          <strong>you win</strong>
         <% end %>
       </td>
       <td>

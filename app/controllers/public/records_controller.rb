@@ -1,5 +1,4 @@
 class Public::RecordsController < ApplicationController
-  before_action :set_user
   range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
   PER =  10
   helper_method :sort_column, :sort_direction
@@ -12,16 +11,16 @@ class Public::RecordsController < ApplicationController
   def add
     record = Record.new(record_params)
     record.user_id = current_user.id
-    record.hour = studyHours( record.start, record.end )
+    record.hour = studyHours(record.start, record.end)
     record.save
-    redirect_to records_path
+    redirect_to user_records_path(current_user)
   end
 
   def create
     @category = Category.find(params[:category_id])
-    @record = Record.new(user_id: @user.id, name: @category.name, color: @category.color, start: DateTime.current, category_id: @category.id)
+    @record = Record.new(user_id: current_user.id, name: @category.name, color: @category.color, start: DateTime.current, category_id: @category.id)
     @record.save
-    redirect_to record_path(@record)
+    redirect_to user_record_path(current_user, @record)
   end
 
   def finish
@@ -29,11 +28,11 @@ class Public::RecordsController < ApplicationController
     @record.end = Time.now
     @record.hour = studyHours(@record.start, @record.end)
     @record.save
-    redirect_to records_path(@record)
+    redirect_to user_records_path(current_user)
   end
 
   def index
-    @records = Record.page(params[:page]).per(PER).order("#{sort_column} #{sort_direction}")
+    @records = Record.where(user_id: params[:user_id]).page(params[:page]).per(PER).order("#{sort_column} #{sort_direction}")
   end
 
   def show
@@ -51,21 +50,17 @@ class Public::RecordsController < ApplicationController
     @record.update(record_params)
     @record.hour = studyHours(@record.start, @record.end)
     @record.update(record_hour_params)
-    redirect_to record_path(@record)
+    redirect_to user_record_path(current_user, @record)
   end
 
   def destroy
     record = Record.find(params[:id])
     record.destroy
-    redirect_to records_path
+    redirect_to user_records_path(current_user)
   end
 
   private
-
-  def set_user
-    @user = current_user
-  end
-
+  
   def record_params
     params.require(:record).permit(:name, :color, :start, :end)
   end

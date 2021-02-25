@@ -1,29 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
       <h2 class="marker">学習記録一覧</h2>
-      <table class="table" style= "width: 900px;margin: 0 auto;">
-        <thead style="background: lightgray;">
+      <table class="table" border="2" style= "width: 900px;margin: 0 auto;">
+        <thead style= "background: lightgray;">
           <tr>
-            <th>名前</th>
-            <th>カテゴリー</th>
-            <th>カテゴリーの色</th>
-            <th>学習時間</th>
-            <th>学習開始時刻</th>
-            <th>学習終了時刻</th>
-            <th></th>
+            <th><%= sort_order "user_id", "ユーザー名" %></th>
+            <th><%= sort_order "name", "カテゴリー名" %></th>
+            <th><%= sort_order "hour", "学習時間" %></th>
+            <th><%= sort_order "start", "学習開始時間" %></th>
+            <th>学習終了時間</th>
+            <th>コメント数</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
-        <% @records.each do |record| %>
+        <tbody style= "background-color: rgb(255, 255, 255);">
+          <% @records.each do |record| %>
           <tr>
             <td><%= record.user.name %></td>
-            <td><%= record.name %></td>
-            <td><%= record.color %></td>
+            <td class="color_<%= record.color %>"><%= record.name %></td>
             <td>
               <% if !(record.end.nil?) %>
-                <%= studyHours( record.end, record.start ) %>
+                <%= minute(record.hour) %>
               <% end %>
             </td>
             <td><%=l record.start %></td>
@@ -32,13 +30,12 @@
                 <%=l record.end %>
               <% end %>
             </td>
-            <td><p><%= link_to "#{record.post_comments.count} コメント", record_path(record.id) %></p></td>
-            <td><%= link_to "編集",edit_record_path(record), class:"btn btn-success btn-customer_edit" %></td>
+            <td><p><%= "#{record.post_comments.count} コメント" %></p></td>
+            <td><%= link_to "詳細",admin_record_path(record), class:"btn btn-success btn-customer_edit" %></td>
           </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
-
       <%= paginate @records %>
     </div>
   </div>

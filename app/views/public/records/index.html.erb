@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
       <h2 class="marker">学習記録一覧</h2>
-      <%= link_to "記録の追加", new_record_path, class:"btn btn-success btn-customer_edit" %>
+      <%= link_to "記録の追加", new_user_record_path(current_user), class:"btn btn-success" %>
       <h4 class= "text-right">昨日の学習時間　<strong><%= yesterdayHours(current_user)%></strong></h4>
       <table class="table" border="2" style= "width: 900px;margin: 0 auto;">
         <thead style= "background: lightgray;">
@@ -31,7 +31,7 @@
               <% end %>
             </td>
             <td><p><%= "#{record.post_comments.count} コメント" %></p></td>
-            <td><%= link_to "詳細",record_path(record), class:"btn btn-success btn-customer_edit" %></td>
+            <td><%= link_to "詳細",user_record_path(user_id: record.user.id, id: record), class:"btn btn-success" %></td>
           </tr>
           <% end %>
         </tbody>

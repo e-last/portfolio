@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users,only: [:index, :edit, :update]
-    resources :records,only: [:index, :edit, :update, :destroy]
+    resources :records,only: [:index, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   devise_for :users, controllers: {
@@ -31,6 +33,13 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      post 'record/add' => 'records#add'
+      resources :records, only: [:new, :index, :show, :edit, :update, :destroy] do
+      member do
+        patch 'finish' => 'records#finish'
+      end
+      resources :post_comments, only: [:create, :destroy]
+    end
     end
 
 
@@ -39,14 +48,6 @@ Rails.application.routes.draw do
         get 'time' => 'categories#time'
       end
       resources :records, only: [:create]
-    end
-
-    post 'record/add' => 'records#add'
-    resources :records, only: [:new, :index, :show, :edit, :update, :destroy] do
-      member do
-        patch 'finish' => 'records#finish'
-      end
-      resources :post_comments, only: [:create, :destroy]
     end
 
     get '/search' => 'search#search'

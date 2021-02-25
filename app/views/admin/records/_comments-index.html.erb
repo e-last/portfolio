@@ -7,9 +7,7 @@
     <%= post_comment.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
   </div>
   <%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-    <div class="comment-delete">
-      <%= link_to "削除", user_record_post_comment_path(current_user, post_comment.record, post_comment), method: :delete, remote: true %>
-    </div>
-    <% end %>
+  <div class="comment-delete">
+    <%= link_to "削除", record_post_comment_path(post_comment.record, post_comment), method: :delete, remote: true %>
+  </div>
 <% end %>

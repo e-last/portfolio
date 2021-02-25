@@ -31,21 +31,14 @@
         </tr>
       </table>
       <% if !(@record.end.nil?) %>
-        <%= link_to "変更",edit_user_record_path(user_id: current_user, id: @record), class:"btn btn-success" %>
+        <%= link_to "変更",edit_admin_record_path(@record), class:"btn btn-success" %>
       <% else %>
-        <%= link_to "学習終了", finish_user_record_path(user_id: current_user, id: @record), method: :patch, "data-confirm" => "学習を終了しますか？", class:"btn btn-info" %>
+        <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？", class:"btn btn-info" %>
       <% end %>
-      <%= link_to "削除",user_record_path(user_id: current_user, id: @record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+      <%= link_to "削除",record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
 
       <div class="comments">
-        <%= render 'public/records/comments-index', record: @record %>
-      </div>
-
-      <div class="new-comment">
-        <%= form_with model:[current_user, @record, @post_comment] do |f| %>
-          <%= f.text_area :comment, placeholder: "コメントをここに", size: "60x4"%>
-          <%= f.submit "送信する"%>
-        <% end %>
+        <%= render 'admin/records/comments-index', record: @record %>
       </div>
 
     </div>

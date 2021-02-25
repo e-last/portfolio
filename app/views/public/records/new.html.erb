@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12">
       <h2>記録の追加</h2>
-      <%= form_with model: @record, url: record_add_path,method: :post, local:true do |record| %>
+      <%= form_with model: @record, url: user_record_add_path(user_id: current_user), method: :post, local:true do |record| %>
       <div>
         <%= record.label:"カテゴリー" %>
         <%= record.select:name, @category_names%>
@@ -11,9 +11,9 @@
       </div>
       <div>
         <%= record.label:"開始時刻" %>
-        <%= record.datetime_select:start%>
+        <%= record.datetime_select:start %>
         <%= record.label:"終了時刻" %>
-          <%= record.datetime_select:end%>
+          <%= record.datetime_select:end %>
       </div>
       <div>
         <%= record.submit "記録を追加する" , class:"btn btn-success btn-customer_edit" %>

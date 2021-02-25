@@ -32,7 +32,9 @@ module Public::RecordsHelper
     yesterdayRecords = user.records.where(start: range)
     sum = 0
     yesterdayRecords.each do |yesterdayRecord|
-      sum += yesterdayRecord.hour
+      if yesterdayRecord.hour != nil
+        sum += yesterdayRecord.hour
+      end
     end
     return minute(sum)
   end
@@ -40,6 +42,6 @@ module Public::RecordsHelper
   def sort_order(column, title)
     direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
     link_to title, { sort: column, direction: direction }
-    end
+  end
 
 end

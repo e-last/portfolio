@@ -5,6 +5,7 @@
         <%= render "public/relationships/search_area" %>
       </div>
       <% if @users.exists? %>
+        <h2>フォローしているユーザー一覧</h2>
         <%= render 'public/relationships/followings', users: @users %>
       <% else %>
         <h2>フォローしているユーザーはいません</h2>

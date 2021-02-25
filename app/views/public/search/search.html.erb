@@ -5,12 +5,11 @@
         <%= render "public/relationships/search_area" %>
       </div>
       <% if @users.exists? %>
+        <h2>"<%= @value %>"を含むユーザー一覧</h2>
         <%= render 'public/relationships/followings', users: @users %>
       <% else %>
-        <h2>フォローしているユーザーはいません</h2>
+        <h2>"<%= @value %>"を含むユーザーはいません</h2>
       <% end %>
     </div>
   </div>
 </div>
-
-<%= render 'public/relationships/followings', users: @users %>
