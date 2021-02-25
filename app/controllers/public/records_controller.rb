@@ -1,4 +1,5 @@
 class Public::RecordsController < ApplicationController
+  before_action :authenticate_user!
   range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
   PER =  10
   helper_method :sort_column, :sort_direction

@@ -5,6 +5,7 @@
       <th>昨日の学習時間</th>
       <th>昨日の勝敗</th>
       <th>フォロー</th>
+      <th></th>
     </tr>
   </thead>
   <tbody style= "background-color: rgb(255, 255, 255);">
@@ -32,6 +33,7 @@
           自分
         <% end %>
       </td>
+      <td><%= link_to "学習記録一覧", user_records_path(user), class: "btn btn-info" %></td>
     </tr>
   <% end %>
   </tbody>

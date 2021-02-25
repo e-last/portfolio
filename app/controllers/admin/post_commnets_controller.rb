@@ -1,4 +1,5 @@
 class Admin::PostCommnetsController < ApplicationController
+  before_action :authenticate_admin!
 
   def destroy
     @record = Record.find(params[:record_id])
