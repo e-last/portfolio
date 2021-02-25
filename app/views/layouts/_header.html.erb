@@ -1,30 +1,26 @@
-<header>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ffc37a;">
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(127, 217, 212, 0.86);">
     <div class="container">
-      <a class="navbar-brand" href="/"><span><i class="far fa-moon"></i>  学習管理サイト</span></a>
+      <a class="navbar-brand" href="/"><span><i class="fas fa-pencil-alt"></i>学習管理サイト</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-
         <% if admin_signed_in? %>
-          <li><%= link_to ' users',admin_users_path,class: 'fas fa-gift nav-link text-light' %></li>
-          <li><%= link_to ' records',admin_records_path,class: 'fas fa-user-alt nav-link text-light' %></li>
-          <li><%= link_to ' logout', destroy_admin_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
+          <li><%= link_to "ユーザー一覧", admin_users_path, class: "fas fa-users nav-link text-light" %></li>
+          <li><%= link_to "学習記録一覧", admin_records_path, class: "fas fa-clock nav-link text-light" %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-light" %></li>
         <% elsif user_signed_in? %>
-          <ui class="header-name">
-            ようこそ、<%= current_user.name %>さん！
-          </ui>
-          <li><%= link_to ' mypage', user_path(current_user),class: 'fas fa-home nav-link text-light' %></li>
-          <li><%= link_to ' category', categories_path,class: 'fas fa-gift nav-link text-light' %></li>
-          <li><%= link_to ' record', records_path ,class: 'fas fa-shopping-cart nav-link text-light'%></li>
-          <li><%= link_to ' following', user_followings_path(current_user),class: 'fas fa-shopping-cart nav-link text-light'%></li>
-          <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-light' %></li>
+          <li>ようこそ、<%= current_user.name %>さん！</li>
+          <li><%= link_to "マイページ", user_path(current_user), class: "fas fa-home nav-link text-light" %></li>
+          <li><%= link_to "カテゴリー", categories_path, class: "fas fa-clipboard nav-link text-light" %></li>
+          <li><%= link_to "学習記録一覧", records_path ,class: "fas fa-clock nav-link text-light" %></li>
+          <li><%= link_to "フォロー", user_followings_path(current_user), class: "fas fa-user-friends nav-link text-light" %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-light" %></li>
         <% else %>
-          <li><%= link_to ' sign up', new_user_registration_path,class: 'fas fa-user-plus nav-link text-light' %></li>
-          <li><%= link_to ' login', new_user_session_path ,class: 'fas fa-sign-in-alt nav-link text-light'%></li>
+          <li><%= link_to "新規登録", new_user_registration_path, class: "fas fa-user-plus nav-link text-light" %></li>
+          <li><%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt nav-link text-light" %></li>
         <% end %>
         </ul>
       </div>

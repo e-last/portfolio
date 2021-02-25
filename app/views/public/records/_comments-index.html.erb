@@ -1,8 +1,10 @@
 <p id="comment_count">コメント件数：<%= record.post_comments.count %></p>
 
 <% record.post_comments.each do |post_comment| %>
-  <di>
-    <%= post_comment.user.name %>さん<%= post_comment.created_at.strftime('%Y/%m/%d') %>
+  <div>
+    <strong><%= post_comment.user.name %>さん</strong>
+    <%= attachment_image_tag post_comment.user, :image, :fill, 17, 17, format: 'jpeg', fallback: "no_image.jpg" %>
+    <%= post_comment.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
   </div>
   <%= post_comment.comment %>
     <% if post_comment.user == current_user %>

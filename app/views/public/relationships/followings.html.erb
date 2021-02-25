@@ -1,10 +1,15 @@
-      <%= form_with url:search_path, method: :get, local: true do |f| %>
-        <%= f.text_field 'search[value]' %>
-              <%= f.submit :"検索" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="float-right">
+        <%= render "public/relationships/search_area" %>
+      </div>
+      <% if @users.exists? %>
+        <%= render 'public/relationships/followings', users: @users %>
+      <% else %>
+        <h2>フォローしているユーザーはいません</h2>
       <% end %>
-      
-<% if @users.exists? %>
-  <%= render 'public/relationships/followings', users: @users %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+    </div>
+  </div>
+</div>
+

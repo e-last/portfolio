@@ -1,15 +1,14 @@
-<div class="quit">
- <strong>本当に退会しますか？</strong>
-
- <div class="quit1">
- 退会すると、会員登録情報や<br>
- これまでの購入履歴が閲覧できなくなります。<br>
- 退会する場合は、「退会する」をクリックしてください。
- </div>
-
-<div class="quit2">
- <%= link_to "退会しない", user_path(current_user), class:"btn  btn-primary btn-lg" %>
- <%= link_to "退会する", users_goodbye_path(current_user), method: :patch, class:"btn  btn-danger btn-lg" %></p>
-</div>
-
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 rounded border text-center" style="background-color: rgb(255, 255, 255);">
+       <h2><strong>本当に退会しますか？</strong></h2>
+       <div class="quit">
+        退会すると、会員登録情報や<br>
+        これまでの学習の記録を閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+       <%= link_to "退会しない", user_path(current_user), class: "btn  btn-success btn-lg" %>
+       <%= link_to "退会する", users_goodbye_path(current_user), method: :patch, class: "btn  btn-danger btn-lg" %></p>
+      </div>
+    </div>
+  </div>
 </div>

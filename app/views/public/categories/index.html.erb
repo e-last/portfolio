@@ -1,46 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2 class="marker">カテゴリー選択</h2>
-      <div class="public-products">
-
-        <table class="table" style= "width: 900px;margin: 0 auto;">
-          <% @categories.each do |category| %>
-          <tr>
-            <td class="color_<%= category.color %>">
-              <%= link_to time_category_path(category) do %>
-                  <%= category.name %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to edit_category_path(category), data: {"turbolinks" => false} do %>
-                  編集
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-
+    <div class="col-lg-12">
+      <div class="category-index">
+        <h2>カテゴリー選択</h2>
+        <div class="public-products">
+          <table class="table" border="2" style= "width: 600px; margin: 0 auto;">
+            <% @categories.each do |category| %>
+            <tr>
+              <td class="color_<%= category.color %> text-center" >
+                <%= link_to "#{category.name}", time_category_path(category), class: "text-dark"%>
+              </td>
+              <td class="text-center" style="background-color: rgb(255, 255, 255);">
+                <%= link_to "編集", edit_category_path(category) %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
         </div>
       </div>
-
-      <h2 class="marker"> カテゴリー追加</h2>
-      <%= form_with model: @category, url: categories_path, method: :post, local: true do |category| %>
-        <table class="category">
-          <tbody>
-              <tr>
-                <td><%= category.label :"カテゴリー名" %></td>
-                <td><%= category.text_field :name ,placeholder:"カテゴリー名" %></td>
-              </tr>
-              <tr>
-                <td><%= category.label :"カテゴリーの色" %></td>
-                <td><%= category.select :color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]], class: 'color' %></td>
-              </tr>
-          </tbody>
-        </table>
-        <%= category.submit "カテゴリー追加",class: "btn btn-success btn-lg" %>
-      <% end %>
-
+      
+      <div class="category-create">
+      <h2>カテゴリー追加</h2>
+        <%= form_with model: @category, url: categories_path, method: :post, local: true do |category| %>
+        <%= category.label :"カテゴリー名" %>
+        <%= category.text_field :name ,placeholder:"カテゴリー名" %>
+        <%= category.label :"カテゴリーの色" %>
+        <%= category.select :color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]], class: 'color' %>
+        <%= category.submit "カテゴリー追加",class: "btn btn-success" %>
+        <% end %>
+    </div>
     </div>
   </div>
 </div>

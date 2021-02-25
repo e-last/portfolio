@@ -17,6 +17,15 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgba(47, 217, 154, 0.05);
+}
 
 .color_1 {
   background-color: rgba(228, 51, 102, 0.84);

@@ -1,1 +1,9 @@
-<h1>トップページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4 rounded border text-center" style="background-color: rgb(255, 255, 255);">
+      <h5>ここは学習時間を管理するサイトです</h5>
+        <%= link_to "新規登録", new_user_registration_path ,class: "btn btn-info" %>
+        <%= link_to "ログイン", new_user_session_path , class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

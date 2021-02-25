@@ -2,45 +2,40 @@
   <div class="row">
     <div class="col-md-12">
       <h2 class="marker">詳細</h2>
-
-      <% if @record.end.nil? %>
-        <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？" %>
-      <% end %>
-
-      <table class='record' style= "width: 400px;">
-          <tr>
-            <td>カテゴリー</td>
-            <td class="color_<%= @record.color %>"><%= @record.name %></td>
-          </tr>
-          <tr>
-            <td>開始時刻</td>
-            <td><%=l @record.start  %></td>
-          </tr>
-          <tr>
-            <td>終了時刻</td>
-            <td>
-              <% if !(@record.end.nil?) %>
-                <%=l @record.end %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>学習時間</td>
-            <td>
-              <% if @record.end.nil? %>
-                計測中です
-              <% else %>
-                <%= minute(@record.hour) %>
-              <% end %>
-              </td>
-          </tr>
+      <table class='table' border="2" style="width: 400px;">
+        <tr>
+          <td style="background-color: rgb(255, 255, 255);">カテゴリー</td>
+          <td class="color_<%= @record.color %>"><%= @record.name%></td>
+        </tr>
+        <tr>
+          <td style="background-color: rgb(255, 255, 255);">開始時刻</td>
+          <td style="background-color: rgb(255, 255, 255);"><%=l @record.start%></td>
+        </tr>
+        <tr>
+          <td style="background-color: rgb(255, 255, 255);">終了時刻</td>
+          <td style="background-color: rgb(255, 255, 255);">
+            <% if !(@record.end.nil?) %>
+              <%=l @record.end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: rgb(255, 255, 255);">学習時間</td>
+          <td style="background-color: rgb(255, 255, 255);">
+            <% if @record.end.nil? %>
+              計測中です
+            <% else %>
+              <%= minute(@record.hour) %>
+            <% end %>
+          </td>
+        </tr>
       </table>
-
       <% if !(@record.end.nil?) %>
-        <%= link_to "変更",edit_record_path(@record), class:"btn btn-success btn-customer_edit" %>
+        <%= link_to "変更",edit_record_path(@record), class:"btn btn-success" %>
+      <% else %>
+        <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？", class:"btn btn-info" %>
       <% end %>
-
-      <%= link_to "削除",record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %>
+      <%= link_to "削除",record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
 
       <div class="comments">
         <%= render 'public/records/comments-index', record: @record %>
@@ -48,8 +43,8 @@
 
       <div class="new-comment">
         <%= form_with(model:[@record, @post_comment]) do |f| %>
-          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
+          <%= f.text_area :comment, placeholder: "コメントをここに", size: "60x4"%>
+          <%= f.submit "送信する"%>
         <% end %>
       </div>
 

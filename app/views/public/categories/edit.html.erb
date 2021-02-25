@@ -1,29 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="marker">カテゴリー編集</h2>
-        <table class="customer-edit">
-          <%= form_with model: @category, url: category_path(@category), local:true, method: :patch do |category| %>
-            <tbody>
-              <tr>
-                  <td><%= category.label :"カテゴリー" %></td>
-                  <td><%= category.text_field :name  , class:"form-control name" %></td>
-              </tr>
-              <tr>
-                  <td><%= category.label :"色" %></td>
-                  <td><%= category.select :color, [ '1', '2', '3', '4', '5', '6', '7', '8'], class: 'color' %></td>
-              </tr>
-              <tr>
-                  <td><%= category.submit '編集内容を保存', class:"btn btn-success btn-customer_edit" %></td>
-                  <td><%= link_to "削除", category_path(@category), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success btn-customer_edit" %></td>
-              </tr>
-              
-              
-
-
-            </tbody>
-          <% end %>
-        </table>
+      <h2>カテゴリー編集</h2>
+      <%= form_with model: @category, url: category_path(@category), local: true, method: :patch do |category| %>
+      <div>
+        <%= category.label:"カテゴリー"%>
+        <%= category.text_field:name, class: "form-control name", class: "input-small"%>
+        <%= category.label:"色"%>
+        <%= category.select:color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]] %>
+      </div>
+      <div>
+        <%= category.submit '編集内容を保存', class: "btn btn-success btn-customer_edit"%>
+        <%= link_to "削除", category_path(@category), method: :delete, "data-confirm"=> "本当に削除しますか？", class: "btn btn-danger" %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

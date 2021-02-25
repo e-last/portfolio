@@ -1,30 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2 class="marker">記録の追加</h2>
-
+    <div class="col-lg-12">
+      <h2>記録の追加</h2>
       <%= form_with model: @record, url: record_add_path,method: :post, local:true do |record| %>
-
-        <table class='record' style= "width: 400px;">
-            <tr>
-              <td>カテゴリー</td>
-              <td><%= record.select :name, @category_names, class:"form-control name" %></td>
-            </tr>
-            <tr>
-              <td>カテゴリーの色</td>
-              <td><%= record.select :color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]], class: 'color' %></td>
-            </tr>
-            <tr>
-              <td>開始時刻</td>
-              <td><%= record.datetime_select :start, class:"form-control start" %></td>
-            </tr>
-            <tr>
-              <td>終了時刻</td>
-              <td><%=record.datetime_select :end, class:"form-control start" %></td>
-            </tr>
-        </table>
-
-      　<%= record.submit "記録を追加する" , class:"btn btn-success btn-customer_edit" %>
+      <div>
+        <%= record.label:"カテゴリー" %>
+        <%= record.select:name, @category_names%>
+        <%= record.label:"カテゴリーの色" %>
+        <%= record.select:color, [ ['赤',1], ['青',2],['黄緑',3], ['緑',4],['紫',5], ['黄',6],['橙',7], ['灰',8]]%>
+      </div>
+      <div>
+        <%= record.label:"開始時刻" %>
+        <%= record.datetime_select:start%>
+        <%= record.label:"終了時刻" %>
+          <%= record.datetime_select:end%>
+      </div>
+      <div>
+        <%= record.submit "記録を追加する" , class:"btn btn-success btn-customer_edit" %>
+      </div>
       <% end %>
     </div>
   </div>

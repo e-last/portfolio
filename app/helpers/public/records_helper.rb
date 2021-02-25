@@ -28,7 +28,8 @@ module Public::RecordsHelper
   end
   
   def yesterdayHours(user)
-    yesterdayRecords = user.record.where(start.date == now.yesterday)
+    range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
+    yesterdayRecords = user.records.where(start: range)
     sum = 0
     yesterdayRecords.each do |yesterdayRecord|
       sum += yesterdayRecord.hour
