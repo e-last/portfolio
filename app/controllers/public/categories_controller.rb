@@ -10,8 +10,13 @@ class Public::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     @category.user_id = @user.id
-    @category.save
-    redirect_to categories_path
+    if @category.save
+      redirect_to categories_path
+    else
+      flash[:notice] = "カテゴリー名を入力してください"
+      @categories = Category.where(user_id: @user.id)
+      render :index
+    end
   end
 
   def edit
@@ -20,8 +25,13 @@ class Public::CategoriesController < ApplicationController
 
   def update
     category = Category.find(params[:id])
-    category.update(category_params)
-    redirect_to categories_path
+    if category.update(category_params)
+      redirect_to categories_path
+    else
+      flash[:notice] = "カテゴリー名を入力してください"
+      @category = Category.find(params[:id])
+      render :edit
+    end
   end
 
   def destroy

@@ -11,8 +11,13 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to user_path
+    if @user.update(user_params)
+      redirect_to user_path
+    else
+      flash[:notice] = "名前、メールアドレスを入力してください"
+      render :edit
+    end
+       
   end
 
   def quit
@@ -22,6 +27,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @user.update(is_valid: false)
     reset_session
+    flash[:notice] = "退会しました"
     redirect_to root_path
   end
   

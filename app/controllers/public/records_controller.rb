@@ -13,8 +13,12 @@ class Public::RecordsController < ApplicationController
     record = Record.new(record_params)
     record.user_id = current_user.id
     record.hour = studyHours(record.start, record.end)
-    record.save
-    redirect_to user_records_path(current_user)
+    if record.save
+      redirect_to user_records_path(current_user)
+    else
+      flash[:notice] = "正しい時刻を入力してください"
+      render :new
+    end
   end
 
   def create
@@ -33,6 +37,7 @@ class Public::RecordsController < ApplicationController
   end
 
   def index
+    @user = User.find(params[:user_id])
     @records = Record.where(user_id: params[:user_id]).page(params[:page]).per(PER).order("#{sort_column} #{sort_direction}")
   end
 
@@ -48,10 +53,14 @@ class Public::RecordsController < ApplicationController
 
   def update
     @record = Record.find(params[:id])
-    @record.update(record_params)
-    @record.hour = studyHours(@record.start, @record.end)
-    @record.update(record_hour_params)
-    redirect_to user_record_path(current_user, @record)
+    if @record.update(record_params)
+      @record.hour = studyHours(@record.start, @record.end)
+      @record.update(record_hour_params)
+      redirect_to user_record_path(current_user, @record)
+    else
+      flash[:notice] = "正しい時刻を入力してください"
+      render :edit
+    end
   end
 
   def destroy

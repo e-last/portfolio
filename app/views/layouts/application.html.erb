@@ -13,7 +13,7 @@
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
     <main class="main-container mb-auto">
-      <%= flash[:notice] %>
+      <p class="notice text-danger"><%= flash[:notice] %></p>
       <%= yield %>
     </main>
   </body>

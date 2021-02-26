@@ -12,8 +12,9 @@
           <%= user.attachment_field :image, class:"form-control image", class: "input-small"%>
         </div>
         <div>
-          <%= user.submit '編集内容を保存', class:"btn btn-success btn-user_edit" %>
-          <%= link_to "退会する", users_quit_path, class:"btn btn-danger btn-user_quit" %>
+          <%= user.submit '編集内容を保存', class:"btn btn-success" %>
+          <%= link_to "退会する", users_quit_path, class:"btn btn-danger" %>
+          <%= link_to "戻る", :back, class: "btn btn-info" %>
         </div>
       <% end %>
     </div>

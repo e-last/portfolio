@@ -24,6 +24,7 @@
           <%= link_to "学習終了", finish_user_record_path(current_user, @record), method: :patch, "data-confirm" => "学習を終了しますか？", class: "btn btn-info"%>
         <% end %>
         <%= link_to "削除", user_record_path(current_user, @record), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"%>
+        <%= link_to "戻る", :back, class: "btn btn-info" %>
       </div>
       <% end %>
     </div>
