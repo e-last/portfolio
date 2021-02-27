@@ -10,13 +10,13 @@ class Public::RecordsController < ApplicationController
   end
 
   def add
-    record = Record.new(record_params)
-    record.user_id = current_user.id
-    record.hour = studyHours(record.start, record.end)
-    if record.save
+    @record = Record.new(record_params)
+    @record.user_id = current_user.id
+    @record.hour = studyHours(@record.start, @record.end)
+    if @record.save
       redirect_to user_records_path(current_user)
     else
-      flash[:notice] = "正しい時刻を入力してください"
+      @category_names = Category.pluck("name")
       render :new
     end
   end
@@ -70,7 +70,7 @@ class Public::RecordsController < ApplicationController
   end
 
   private
-  
+
   def record_params
     params.require(:record).permit(:name, :color, :start, :end)
   end
