@@ -52,6 +52,7 @@ class Public::RecordsController < ApplicationController
   def edit
     @record = Record.new
     @categories = Category.where(user_id: current_user)
+    @category_names = @categories.pluck("name")
     @record = Record.find(params[:id])
   end
 

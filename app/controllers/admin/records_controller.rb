@@ -19,8 +19,16 @@ class Admin::RecordsController < ApplicationController
 
   def update
     @record = Record.find(params[:id])
-    @record.update(record_params)
-    redirect_to admin_records_path
+    if @record.update(record_params)
+      @record.hour = studyHours(@record.start, @record.end)
+      @record.update(record_hour_params)
+      redirect_to admin_record_path(@record)
+    else
+      flash[:notice] = "正しい時刻を入力してください"
+      @categories = Category.where(user_id: params[:user_id])
+      @category_names = @categories.pluck("name")
+      render :edit
+    end
   end
 
   def destroy
@@ -32,7 +40,11 @@ class Admin::RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:user).permit(:name, :email, :is_valid)
+    params.require(:record).permit(:name, :color, :start, :end)
+  end
+  
+  def record_hour_params
+    params.require(:record).permit(:hour)
   end
   
   def sort_direction
