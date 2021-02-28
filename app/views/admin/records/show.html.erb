@@ -35,7 +35,7 @@
       <% else %>
         <%= link_to "学習終了", finish_record_path(@record), method: :patch, "data-confirm" => "学習を終了しますか？", class:"btn btn-info" %>
       <% end %>
-      <%= link_to "削除",record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
+      <%= link_to "削除", admin_record_path(@record), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %>
 
       <div class="comments">
         <%= render 'admin/records/comments-index', record: @record %>

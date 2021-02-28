@@ -6,7 +6,8 @@ class Public::RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    @category_names = Category.pluck("name")
+    @categories = Category.where(user_id: current_user)
+    @category_names = @categories.pluck("name")
   end
 
   def add
@@ -17,6 +18,7 @@ class Public::RecordsController < ApplicationController
       redirect_to user_records_path(current_user)
     else
       @category_names = Category.pluck("name")
+      flash[:notice] = "正しい時刻を入力してください"
       render :new
     end
   end
@@ -44,10 +46,12 @@ class Public::RecordsController < ApplicationController
   def show
     @record = Record.find(params[:id])
     @post_comment = PostComment.new
+    @user = User.find(params[:user_id])
   end
 
   def edit
-    @category_names = Category.pluck("name")
+    @record = Record.new
+    @categories = Category.where(user_id: current_user)
     @record = Record.find(params[:id])
   end
 
@@ -59,6 +63,8 @@ class Public::RecordsController < ApplicationController
       redirect_to user_record_path(current_user, @record)
     else
       flash[:notice] = "正しい時刻を入力してください"
+      @categories = Category.where(user_id: current_user)
+      @category_names = @categories.pluck("name")
       render :edit
     end
   end
