@@ -58,3 +58,19 @@ body{
 .color_8 {
   background-color: rgba(204, 204, 204, 0.53);
 }
+
+.btn-success{
+  background-color: rgba(0, 255, 0, 0.41);
+}
+
+.btn-success:hover{
+  background-color: rgba(8, 147, 0, 0.45);
+}
+
+.btn-danger{
+  background-color: rgba(255, 0, 0, 0.51);
+}
+
+.btn-danger:hover{
+  background-color: rgba(185, 0, 0, 0.51);
+}
