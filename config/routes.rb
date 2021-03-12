@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'search/search'
-  end
   devise_for :admins, skip: :all
 
   devise_scope :admin do
