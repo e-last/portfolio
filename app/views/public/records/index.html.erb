@@ -4,7 +4,7 @@
       <h2><%= @user.name %>さんの学習記録一覧</h2>
       <%= link_to "記録の追加", new_user_record_path(current_user), class:"btn btn-success" %>
       <h4 class= "text-right">昨日の学習時間　<strong><%= yesterdayHours(current_user)%></strong></h4>
-      <table class="table" border="2" style= "width: 900px;margin: 0 auto;">
+      <table class="table"  style= "width: 900px;margin: 0 auto;">
         <thead style= "background: lightgray;">
           <tr>
             <th><%= sort_order "name", "カテゴリー名" %></th>
