@@ -8,6 +8,6 @@
   </div>
   <%= post_comment.comment %>
   <div class="comment-delete">
-    <%= link_to "削除", record_post_comment_path(post_comment.record, post_comment), method: :delete, remote: true %>
+    <%= link_to "削除", admin_record_post_comment_path(post_comment.record, post_comment), method: :delete, remote: true %>
   </div>
 <% end %>

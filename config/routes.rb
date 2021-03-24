@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     delete 'admins/sign_out' => 'admin/sessions#destroy', as: :destroy_admin_session
   end
 
-  namespace :admin do 
+  namespace :admin do
     resources :users,only: [:index, :edit, :update]
     resources :records,only: [:index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:destroy]
